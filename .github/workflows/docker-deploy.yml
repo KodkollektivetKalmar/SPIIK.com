@@ -19,14 +19,13 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          platforms: linux/amd64,linux/arm64/v8
           push: true
-          target: production # Ensure this matches a stage in your Dockerfile
-          tags: ${{ vars.DOCKER_USERNAME }}spiik.com:latest
+          target: production
+          tags: ${{ vars.DOCKER_USERNAME }}/spiik.com:latest
       - name: Deploy to DigitalOcean Droplet
         env:
           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_HUB_REPOSITORY: ${{ github.event.repository.name }}
+          DOCKER_HUB_REPOSITORY: spiik.com
           DROPLET_IP: ${{ secrets.DROPLET_IP }}
           DROPLET_USER: ${{ secrets.DROPLET_USER }}
           DROPLET_SSH_KEY: ${{ secrets.DROPLET_SSH_KEY }}
