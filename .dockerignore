@@ -3,6 +3,7 @@
 **/.env
 **/.git
 **/.gitignore
+**/.eslintrc.json
 **/.project
 **/.settings
 **/.toolstarget
