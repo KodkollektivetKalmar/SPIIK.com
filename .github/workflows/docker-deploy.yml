@@ -21,7 +21,7 @@ jobs:
         with:
           push: true
           target: production
-          tags: ${{ vars.DOCKER_USERNAME }}/${{ spiik.com }}:latest
+          tags: ${{ vars.DOCKER_USERNAME }}\/spiik.com:latest
       - name: Deploy to DigitalOcean Droplet
         env:
           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
