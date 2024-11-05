@@ -29,11 +29,13 @@ jobs:
           DOCKER_HUB_REPOSITORY: spiik.com
           DROPLET_IP: ${{ secrets.DROPLET_IP }}
           DROPLET_USER: ${{ secrets.DROPLET_USER }}
+          DROPLET_SUDO_PASSWORD: spiik123
         run: |
           echo "${{ secrets.DROPLET_SSH_KEY }}" > ssh_key
           chmod 600 ssh_key
           ssh -o StrictHostKeyChecking=no -i ssh_key $DROPLET_USER@$DROPLET_IP << 'EOF'
-            docker login -u $DOCKER_HUB_USERNAME -p ${{ secrets.DOCKERHUB_TOKEN }}
+            sudo docker login -u $DOCKER_HUB_USERNAME -p ${{ secrets.DOCKERHUB_TOKEN }}
+            $DROPLET_SUDO_PASSWORD
             docker pull $DOCKER_HUB_USERNAME/$DOCKER_HUB_REPOSITORY:latest
             docker stop your_container_name || true
             docker rm your_container_name || true
