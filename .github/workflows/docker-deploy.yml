@@ -35,7 +35,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i ssh_key $DROPLET_USER@$DROPLET_IP << 'ENDSSH'
 
             # Pull the latest image
-            docker pull $DOCKER_HUB_USERNAME/$DOCKER_HUB_REPOSITORY:latest
+            docker pull kodkollektivetkalmar/spiik.com:latest
             echo "Image pulled"
             
             # Stop and remove the existing container (if it exists)
@@ -44,6 +44,6 @@ jobs:
             echo "Container stopped and removed"
             
             # Run the new container
-            docker run -d --name spiikcom -p 8080:3000 kodkollektivet/spiik.com:latest
+            docker run -d --name spiikcom -p 8080:3000 kodkollektivetkalmar/spiik.com:latest
             echo "Container started"
           ENDSSH
