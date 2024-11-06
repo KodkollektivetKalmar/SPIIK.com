@@ -34,9 +34,9 @@ jobs:
           echo "${{ secrets.DROPLET_SSH_KEY }}" > ssh_key
           chmod 600 ssh_key
           ssh -o StrictHostKeyChecking=no -i ssh_key $DROPLET_USER@$DROPLET_IP << 'EOF'
-            echo $DROPLET_SUDO_PASSWORD | sudo -S docker login -u $DOCKER_HUB_USERNAME --password-stdin <<< ${{ secrets.DOCKERHUB_TOKEN }}
-            echo $DROPLET_SUDO_PASSWORD | sudo -S docker pull $DOCKER_HUB_USERNAME/$DOCKER_HUB_REPOSITORY:latest
-            echo $DROPLET_SUDO_PASSWORD | sudo -S docker stop your_container_name || true
-            echo $DROPLET_SUDO_PASSWORD | sudo -S docker rm your_container_name || true
-            echo $DROPLET_SUDO_PASSWORD | sudo -S docker run -d --name your_container_name -p your_host_port:your_container_port $DOCKER_HUB_USERNAME/$DOCKER_HUB_REPOSITORY:latest
+            echo $DROPLET_SUDO_PASSWORD | sudo -S -k docker login -u $DOCKER_HUB_USERNAME --password-stdin <<< ${{ secrets.DOCKERHUB_TOKEN }}
+            echo $DROPLET_SUDO_PASSWORD | sudo -S -k docker pull $DOCKER_HUB_USERNAME/$DOCKER_HUB_REPOSITORY:latest
+            echo $DROPLET_SUDO_PASSWORD | sudo -S -k docker stop your_container_name || true
+            echo $DROPLET_SUDO_PASSWORD | sudo -S -k docker rm your_container_name || true
+            echo $DROPLET_SUDO_PASSWORD | sudo -S -k docker run -d --name your_container_name -p your_host_port:your_container_port $DOCKER_HUB_USERNAME/$DOCKER_HUB_REPOSITORY:latest
           EOF
