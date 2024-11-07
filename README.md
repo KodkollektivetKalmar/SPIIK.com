@@ -67,8 +67,9 @@ The website is automatically deployed to the Ubuntu server on Digital Ocean when
 <br>
 
 1. The code is pushed to the main branch
-2. Github Actions is triggered
+2. Pipelines are run
+3. Github Actions is triggered:
 
-> 1. **Login to Docker Hub** which is the registry where the Docker image is stored.
-> 2. **Build and push** the Docker image to Docker Hub.
-> 3. **Deploy to DigitalOcean Droplet** by SSHing into the server and pulling the latest Docker image from Docker Hub, and then running the image.
+   1. **Login to Docker Hub** which is the registry where the Docker image is stored.
+   2. **Build and push** the Docker image to Docker Hub.
+   3. **Deploy to DigitalOcean Droplet** by SSHing into the server and pulling the latest Docker image from Docker Hub, and then running the image.
